@@ -52,6 +52,11 @@ app.use("/api/messages",messageRouter);
 
 await connectDB();
 
-server.listen(5000,()=>{
+if(process.env.NODE_ENV !== "production"){
+    server.listen(5000,()=>{
     console.log("Server is running on port no: is 5000" );
 })
+}
+
+// export server for vercel-
+export default server;
