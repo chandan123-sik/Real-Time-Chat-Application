@@ -22,7 +22,7 @@ export const userSocketMap = {}; // { userId: socketId }
 // Socket.io connection handler
 io.on("connection", (socket) => {
   const userId = socket.handshake.query.userId;
-  console.log("✅ User connected:", userId);
+  console.log("User connected:", userId);
 
   if (userId) {
     userSocketMap[userId] = socket.id;
@@ -32,7 +32,7 @@ io.on("connection", (socket) => {
   io.emit("getOnlineUsers", Object.keys(userSocketMap));
 
   socket.on("disconnect", () => {
-    console.log("❌ User disconnected:", userId);
+    console.log("User disconnected:", userId);
     delete userSocketMap[userId];
     io.emit("getOnlineUsers", Object.keys(userSocketMap));
   });
@@ -43,7 +43,7 @@ app.use(express.json({ limit: "4mb" }));
 app.use(cors());
 
 // Routes setup
-app.use("/api/status", (req, res) => res.send("✅ Server is live"));
+app.use("/api/status", (req, res) => res.send("Server is live"));
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
@@ -53,7 +53,7 @@ await connectDB();
 // Always start the server (for local + deployment)
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
-  console.log(`🚀 Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
 
 // Export server for deployment (Vercel)
