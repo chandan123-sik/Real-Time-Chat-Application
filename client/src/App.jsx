@@ -1,4 +1,4 @@
-import Reac,{useContext} from 'react'
+import React,{useContext} from 'react'
 import { Routes , Route,Navigate} from 'react-router-dom'
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
@@ -10,7 +10,7 @@ const App = () => {
 
   const {authUser} = useContext(AuthContext);
   return (
-    <div className="bg-[url('./src/assets/bgImage.svg')] 
+    <div className="bg-[url('/bgImage.svg')] 
     bg-contain">
     <Toaster/>
       <Routes>
