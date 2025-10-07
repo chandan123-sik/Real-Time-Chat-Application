@@ -1,3 +1,4 @@
+
 import express from "express";
 import "dotenv/config";
 import cors from "cors";
@@ -12,8 +13,8 @@ const server = http.createServer(app);
 
 // ✅ CORS setup (allow both local and deployed frontend)
 const allowedOrigins = [
-  "http://localhost:5173",        // local dev
-  "https://chat-app-backend-beta-neon.vercel.app/"  // deployed frontend
+  "http://localhost:5173",             // local dev (React)
+  "https://chat-app-backend-beta-neon.vercel.app" // deployed frontend (React)
 ];
 
 app.use(cors({
@@ -21,7 +22,7 @@ app.use(cors({
   credentials: true,
 }));
 
-// Socket.io setup
+// ✅ Socket.io setup
 export const io = new Server(server, {
   cors: { origin: allowedOrigins }
 });
@@ -43,14 +44,15 @@ io.on("connection", (socket) => {
   });
 });
 
-// Middleware
+// ✅ Middleware
 app.use(express.json({ limit: "4mb" }));
 
-// Routes
+// ✅ Routes
 app.use("/api/status", (req, res) => res.send("server is live"));
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
+// ✅ Connect DB
 await connectDB();
 
 if (process.env.NODE_ENV !== "production") {
@@ -59,4 +61,5 @@ if (process.env.NODE_ENV !== "production") {
   });
 }
 
+// ✅ Export for Vercel
 export default server;
