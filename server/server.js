@@ -22,9 +22,11 @@ app.use(cors({
   credentials: true,
 }));
 
-// ✅ Socket.io setup
 export const io = new Server(server, {
-  cors: { origin: allowedOrigins }
+  cors: {
+    origin: allowedOrigins,
+    credentials: true,
+  },
 });
 
 export const userSocketMap = {};
