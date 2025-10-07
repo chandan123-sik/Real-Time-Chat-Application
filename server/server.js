@@ -13,8 +13,8 @@ const server = http.createServer(app);
 
 // ✅ CORS setup (allow both local and deployed frontend)
 const allowedOrigins = [
-  "http://localhost:5173",             // local dev (React)
-  "https://chat-app-backend-beta-neon.vercel.app" // deployed frontend (React)
+  "http://localhost:5173", // local frontend
+  "https://chat-app-frontent-rho.vercel.app" // ✅ your deployed frontend URL (Vercel)
 ];
 
 app.use(cors({
