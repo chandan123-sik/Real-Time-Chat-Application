@@ -10,6 +10,7 @@ import { Server } from "socket.io";
 
 const app = express();
 const server = http.createServer(app);
+const Port = process.env.PORT || 5000;
 
 // ✅ CORS setup (allow both local and deployed frontend)
 const allowedOrigins = [
@@ -58,7 +59,7 @@ app.use("/api/messages", messageRouter);
 await connectDB();
 
 if (process.env.NODE_ENV !== "production") {
-  server.listen(5000, () => {
+  server.listen(Port, () => {
     console.log("Server running on port 5000");
   });
 }
