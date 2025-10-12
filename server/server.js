@@ -11,7 +11,7 @@ const app = express();
 const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 
-// ✅ CORS setup (Render + Vercel frontend + local)
+// CORS setup (Render + Vercel frontend + local)
 const allowedOrigins = [
   "http://localhost:5173",
   "https://chat-app-frontent-rho.vercel.app", // deployed frontend
@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-// ✅ Socket.io setup (important for Render HTTPS)
+// Socket.io setup (important for Render HTTPS)
 export const io = new Server(server, {
   cors: {
     origin: allowedOrigins,
@@ -50,20 +50,20 @@ io.on("connection", (socket) => {
   });
 });
 
-// ✅ Middleware
+//  Middleware
 app.use(express.json({ limit: "4mb" }));
 
-// ✅ Routes
+//  Routes
 app.use("/api/status", (req, res) => res.send("Server is live"));
 app.use("/api/auth", userRouter);
 app.use("/api/messages", messageRouter);
 
-// ✅ Connect DB
+//  Connect DB
 await connectDB();
 
-// ✅ Always listen (Render handles production automatically)
+//  Always listen (Render handles production automatically)
 server.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(` Server running on port ${PORT}`);
 });
 
 export default app;

@@ -3,7 +3,7 @@ import User from "../models/User.js";
 import cloudinary from "../lib/cloudinary.js";
 import { io, userSocketMap } from "../server.js";
 
-// ✅ Get all users except the logged-in user
+//  Get all users except the logged-in user
 export const getUsersForSidebar = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -28,7 +28,7 @@ export const getUsersForSidebar = async (req, res) => {
   }
 };
 
-// ✅ Get all messages between logged-in user & selected user
+//  Get all messages between logged-in user & selected user
 export const getMessages = async (req, res) => {
   try {
     const { id: selectedUserId } = req.params;
@@ -57,7 +57,7 @@ export const getMessages = async (req, res) => {
   }
 };
 
-// ✅ Mark specific message as seen
+//  Mark specific message as seen
 export const markMessageAsSeen = async (req, res) => {
   try {
     const { id } = req.params;
@@ -69,7 +69,7 @@ export const markMessageAsSeen = async (req, res) => {
   }
 };
 
-// ✅ Send a new message
+//  Send a new message
 export const sendMessage = async (req, res) => {
   try {
     const { text, image } = req.body;
